@@ -1,16 +1,33 @@
 /* Admin Panel Specific Styles */
 
 .back-link {
-    color: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--romantic-color), var(--motivational-color));
+    color: white;
+    border-radius: 25px;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: var(--transition);
+    font-size: 0.95rem;
     font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(255, 107, 157, 0.3);
 }
 
 .back-link:hover {
-    color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 157, 0.4);
+}
+
+/* Dark mode back link */
+[data-theme="dark"] .back-link {
+    box-shadow: 0 4px 10px rgba(255, 107, 157, 0.4);
+}
+
+[data-theme="dark"] .back-link:hover {
+    box-shadow: 0 6px 15px rgba(255, 107, 157, 0.5);
 }
 
 .admin-tabs {

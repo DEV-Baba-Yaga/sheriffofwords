@@ -2,64 +2,20 @@
   "poems": [
     {
       "id": 1,
-      "title": "Love's Whisper",
-      "content": "In the quiet moments of the dawn,\nWhen the world is still and new,\nI find myself thinking of you,\nAnd how my heart has been drawn.\n\nTo your smile, your gentle grace,\nThe way you light up every room,\nYou chase away all of my gloom,\nAnd bring sunshine to this place.",
-      "category": "romantic",
-      "author": "Amar Sheriff",
-      "date": "2025-01-15"
-    },
-    {
-      "id": 2,
-      "title": "Rise Above",
-      "content": "When the road ahead seems steep and long,\nAnd doubt creeps in like morning mist,\nRemember that you are strong,\nA warrior who will persist.\n\nEvery setback is a setup,\nFor a comeback even greater,\nSo stand tall and never let up,\nYour dreams will come to you later.",
-      "category": "motivational",
-      "author": "Your Name",
-      "date": "2025-01-14"
-    },
-    {
-      "id": 3,
-      "title": "Forever Yours",
-      "content": "Through seasons that come and go,\nThrough rain and sun and snow,\nMy love for you continues to grow,\nThis much I want you to know.\n\nYou are my heart, my soul, my song,\nThe place where I belong,\nWith you is where I'm strong,\nForever, all life long.",
-      "category": "romantic",
-      "author": "Your Name",
-      "date": "2025-01-13"
+      "title": "Silence",
+      "content": "Silence, at times, becomes the perfect reply;\nA language beyond words, profound and wise.\n\nYou need not speak, or justify;\nSometimes that's all the moment truly needs.",
+      "category": "philosophical",
+      "author": "A. S",
+      "date": "2015-05-16"
     }
   ],
   "quotes": [
     {
       "id": 1,
-      "text": "Love is not about how many days, months, or years you have been together. It's about how much you love each other every single day.",
+      "text": "We touch with our eyes, not just with our hands.",
       "category": "romantic",
-      "author": "Your Name",
-      "date": "2025-01-15"
-    },
-    {
-      "id": 2,
-      "text": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-      "category": "motivational",
-      "author": "Your Name",
-      "date": "2025-01-14"
-    },
-    {
-      "id": 3,
-      "text": "In your eyes, I found my home. In your heart, I found my love. In your soul, I found my mate.",
-      "category": "romantic",
-      "author": "Your Name",
-      "date": "2025-01-13"
-    },
-    {
-      "id": 4,
-      "text": "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
-      "category": "motivational",
-      "author": "Your Name",
-      "date": "2025-01-12"
-    },
-    {
-      "id": 5,
-      "text": "The only way to do great work is to love what you do. Stay passionate, stay driven, stay focused.",
-      "category": "motivational",
-      "author": "Your Name",
-      "date": "2025-01-11"
+      "author": "A. S",
+      "date": "2015-11-04"
     }
   ]
 }

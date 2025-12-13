@@ -408,27 +408,11 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    var(--romantic-color) 0%,
-    transparent 100%
-  );
+  background: var(--category-gradient, linear-gradient(135deg, var(--romantic-color) 0%, transparent 100%));
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: var(--border-radius);
   z-index: 0;
-}
-
-.poem-card.motivational::before {
-  background: linear-gradient(
-    135deg,
-    var(--motivational-color) 0%,
-    transparent 100%
-  );
-}
-
-.poem-card.motivational {
-  border-left-color: var(--motivational-color);
 }
 
 .poem-card:hover {
@@ -491,16 +475,7 @@ body {
   font-size: 0.85rem;
   font-weight: 500;
   font-family: "Arial", sans-serif;
-}
-
-.category-tag.romantic {
-  background-color: rgba(255, 107, 157, 0.15);
-  color: var(--romantic-color);
-}
-
-.category-tag.motivational {
-  background-color: rgba(243, 156, 18, 0.15);
-  color: var(--motivational-color);
+  /* Colors will be applied dynamically via JavaScript */
 }
 
 .poem-date {
@@ -531,27 +506,11 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    var(--romantic-color) 0%,
-    transparent 100%
-  );
+  background: var(--category-gradient, linear-gradient(135deg, var(--romantic-color) 0%, transparent 100%));
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: var(--border-radius);
   z-index: 0;
-}
-
-.quote-card.motivational::after {
-  background: linear-gradient(
-    135deg,
-    var(--motivational-color) 0%,
-    transparent 100%
-  );
-}
-
-.quote-card.motivational {
-  border-left-color: var(--motivational-color);
 }
 
 .quote-card:hover {

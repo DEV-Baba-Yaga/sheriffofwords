@@ -8,6 +8,135 @@ let state = {
   theme: localStorage.getItem("theme") || "light",
 };
 
+// Category color cache
+const categoryColors = new Map();
+
+/**
+ * Generate a consistent color for a category using hash-based color generation
+ * @param {string} category - The category name
+ * @returns {object} - Object with color (hex) and lightColor (rgba) properties
+ */
+function getCategoryColor(category) {
+  // Return cached color if available
+  if (categoryColors.has(category)) {
+    return categoryColors.get(category);
+  }
+
+  // Hash function to generate a number from string
+  let hash = 0;
+  for (let i = 0; i < category.length; i++) {
+    hash = category.charCodeAt(i) + ((hash << 5) - hash);
+    hash = hash & hash; // Convert to 32bit integer
+  }
+
+  // Generate HSL color with good saturation and lightness for readability
+  const hue = Math.abs(hash % 360); // 0-359
+  const saturation = 65 + (Math.abs(hash) % 15); // 65-80%
+  const lightness = 50 + (Math.abs(hash >> 8) % 10); // 50-60%
+
+  // Convert HSL to RGB
+  const h = hue / 360;
+  const s = saturation / 100;
+  const l = lightness / 100;
+
+  let r, g, b;
+  if (s === 0) {
+    r = g = b = l;
+  } else {
+    const hue2rgb = (p, q, t) => {
+      if (t < 0) t += 1;
+      if (t > 1) t -= 1;
+      if (t < 1 / 6) return p + (q - p) * 6 * t;
+      if (t < 1 / 2) return q;
+      if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+      return p;
+    };
+    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+    const p = 2 * l - q;
+    r = hue2rgb(p, q, h + 1 / 3);
+    g = hue2rgb(p, q, h);
+    b = hue2rgb(p, q, h - 1 / 3);
+  }
+
+  // Convert to 0-255 range
+  const rgb = {
+    r: Math.round(r * 255),
+    g: Math.round(g * 255),
+    b: Math.round(b * 255),
+  };
+
+  const colorHex = `#${((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b)
+    .toString(16)
+    .slice(1)}`;
+  const colorRgba = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.15)`;
+
+  const colors = {
+    color: colorHex,
+    lightColor: colorRgba,
+    rgb: rgb,
+  };
+
+  // Cache the color
+  categoryColors.set(category, colors);
+
+  return colors;
+}
+
+/**
+ * Apply dynamic colors to category tags and cards
+ */
+function applyCategoryColors() {
+  // Get all category tags
+  const categoryTags = document.querySelectorAll(".category-tag");
+
+  categoryTags.forEach((tag) => {
+    const category = tag.textContent.trim();
+    const colors = getCategoryColor(category);
+
+    // Apply colors to the tag
+    tag.style.backgroundColor = colors.lightColor;
+    tag.style.color = colors.color;
+  });
+
+  // Apply colors to poem cards
+  const poemCards = document.querySelectorAll(".poem-card");
+  poemCards.forEach((card) => {
+    const categoryTag = card.querySelector(".category-tag");
+    if (categoryTag) {
+      const category = categoryTag.textContent.trim();
+      const colors = getCategoryColor(category);
+
+      // Set border-left color
+      card.style.borderLeftColor = colors.color;
+
+      // Set gradient for the ::before pseudo-element via CSS custom property
+      card.style.setProperty(
+        "--category-gradient",
+        `linear-gradient(135deg, ${colors.color} 0%, transparent 100%)`
+      );
+    }
+  });
+
+  // Apply colors to quote cards
+  const quoteCards = document.querySelectorAll(".quote-card");
+  quoteCards.forEach((card) => {
+    const categoryTag = card.querySelector(".category-tag");
+    if (categoryTag) {
+      const category = categoryTag.textContent.trim();
+      const colors = getCategoryColor(category);
+
+      // Set border-left color
+      card.style.borderLeftColor = colors.color;
+
+      // Set gradient for the ::after pseudo-element via CSS custom property
+      card.style.setProperty(
+        "--category-gradient",
+        `linear-gradient(135deg, ${colors.color} 0%, transparent 100%)`
+      );
+    }
+  });
+}
+
 // DOM elements
 const poemsContainer = document.getElementById("poemsContainer");
 const quotesContainer = document.getElementById("quotesContainer");
@@ -272,6 +401,9 @@ function renderContent() {
     (state.currentView === "quotes" && filteredQuotes.length > 0);
 
   emptyState.style.display = hasResults ? "none" : "block";
+
+  // Apply dynamic category colors after rendering
+  applyCategoryColors();
 }
 
 // Render poems
